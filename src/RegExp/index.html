@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <script src="./index.js"></script>
+  <label for="type1">
+    汉字:
+    <input type="checkbox" name="type1">
+  </label>
+
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <label for="type2">
+    字母:
+    <input type="checkbox" name="type2">
+  </label>
+
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <label for="type3">
+    数字:
+    <input type="checkbox" name="type3">
+  </label>
+  <br><br>
+  <label for="type4">
+    特殊符号:
+    <input type="text" name="type4" oninput="formatVal(this)">
+  </label>
+  
+  <br><br>
+  <hr>
+  <label for="test">
+    在这里输入: <input type="text" name="test" onblur="test(this)">
+  </label>
+
+
+  <script>
+    // 格式化输入内容
+    function formatVal(e){
+      e.value = e.value.replace(/[a-zA-Z|\u4e00-\u9fa5|0-9]/g, '')
+    }
+
+
+    function test(e){
+      var text = e.value
+
+      var types = []
+      var chinese = document.querySelector('input[name=type1]')
+      var letter = document.querySelector('input[name=type2]')
+      var number = document.querySelector('input[name=type3]')
+      var spec = document.querySelector('input[name=type4]').value
+
+      chinese.checked && types.push(1)
+      letter.checked && types.push(2)
+      number.checked && types.push(3)
+      types = types.join(',')
+
+      const res = isAllow(text, types, spec)
+      console.log(res ? '通过----------------------------': '失败----------------------------'); 
+    }
+  </script>
+  
+</body>
+</html>
