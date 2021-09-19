@@ -24,8 +24,16 @@
     }
   
     // 存在限制
-    var reg = finalRegExp.length ? new RegExp(`[^${finalRegExp.join('|')}]`, 'gi') : ''
-    var specReg = spec ? new RegExp(`[^${spec}]`, 'gi') : ''
+    var reg = finalRegExp.length ? new RegExp(`[^${finalRegExp.join('|')}]`) : ''
+    var specReg = spec ? new RegExp(`[^${spec}]`) : ''
+    /**
+     *  正则表达式的test方法一会是false, 一会是true 是怎么回事？
+     *  
+     *  参考这个文章，是因为开启了global模式的问题
+     *  https://blog.csdn.net/weixin_45337170/article/details/116599089
+     */
+
+
     if(reg || specReg){
       // var reg = new RegExp(`[^${finalRegExp.join('')}]`, 'gi')
     
